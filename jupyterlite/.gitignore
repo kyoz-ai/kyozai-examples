@@ -1,0 +1,9 @@
+.jupyterlite.doit.db
+.cache/
+.kyozai.json
+.venv/
+dist/
+extensions/
+lib/
+node_modules/
+tsconfig.tsbuildinfo

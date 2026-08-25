@@ -1,0 +1,20 @@
+{
+  "$schema": "https://kyoz.ai/schemas/application-v1.json",
+  "schemaVersion": 1,
+  "artifacts": {
+    "assets": "dist"
+  },
+  "capabilities": ["application-database"],
+  "database": {
+    "migrations": [
+      "migrations/001-quiz-results.sql",
+      "migrations/002-quiz-answers.sql"
+    ],
+    "tables": {
+      "quiz_results": {
+        "scope": "membership",
+        "key": ["quiz_id"]
+      }
+    }
+  }
+}

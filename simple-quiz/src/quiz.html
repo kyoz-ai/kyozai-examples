@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>計算クイズ</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <main class="quiz">
+      <header>
+        <p class="eyebrow">Simple Quiz</p>
+        <h1>計算クイズ</h1>
+        <p>3問すべてに答えて、結果を確認しましょう。</p>
+      </header>
+      <form id="quiz">
+        <fieldset>
+          <legend>1. 2 + 3 は？</legend>
+          <label><input type="radio" name="addition" value="4" required> 4</label>
+          <label><input type="radio" name="addition" value="5"> 5</label>
+          <label><input type="radio" name="addition" value="6"> 6</label>
+        </fieldset>
+        <fieldset>
+          <legend>2. 6 × 4 は？</legend>
+          <label><input type="radio" name="multiplication" value="20" required> 20</label>
+          <label><input type="radio" name="multiplication" value="24"> 24</label>
+          <label><input type="radio" name="multiplication" value="28"> 28</label>
+        </fieldset>
+        <fieldset>
+          <legend>3. 15 ÷ 3 は？</legend>
+          <label><input type="radio" name="division" value="3" required> 3</label>
+          <label><input type="radio" name="division" value="5"> 5</label>
+          <label><input type="radio" name="division" value="6"> 6</label>
+        </fieldset>
+        <button type="submit">採点して保存する</button>
+      </form>
+      <p id="result" class="result" role="status" aria-live="polite"></p>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

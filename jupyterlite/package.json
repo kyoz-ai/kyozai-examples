@@ -1,0 +1,37 @@
+{
+  "name": "@kyozai/example-jupyterlite",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^24.0.0"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && npm run build:extension && npm run build:site && npm run build:entry && npm run build:dashboard",
+    "build:extension": "tsc -b && uv run jupyter-builder build .",
+    "build:site": "uv run jupyter lite build --force --output-dir dist/assets --pyodide https://github.com/pyodide/pyodide/releases/download/314.0.5/pyodide-core-314.0.5.tar.bz2 --pyodide-lock --pyodide-lock-url https://cdn.jsdelivr.net/pyodide/v314.0.5/full/pyodide-lock.json && node scripts/assemble.mjs",
+    "build:entry": "esbuild src/entry.ts --bundle --format=esm --platform=browser --outfile=dist/assets/entry.js",
+    "build:dashboard": "esbuild src/dashboard.ts --bundle --format=esm --platform=browser --outfile=dist/assets/dashboard.js",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@jupyterlab/coreutils": "~6.6.3",
+    "@jupyterlab/services": "~7.6.3",
+    "@lumino/signaling": "^2.1.5"
+  },
+  "devDependencies": {
+    "@jupyter/builder": "^1.0.2",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.2.18",
+    "esbuild": "^0.28.2",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.20.5",
+    "typescript": "~7.0.2"
+  },
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "extensions/@kyozai/jupyterlite-drive"
+  }
+}

@@ -1,0 +1,89 @@
+:root {
+  color: #172033;
+  background: #f4f1e8;
+  font: 16px/1.6 system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.quiz,
+.dashboard,
+.loading {
+  width: min(38rem, calc(100% - 2rem));
+  margin: 3rem auto;
+}
+
+header,
+fieldset,
+.result {
+  background: white;
+  border: 1px solid #d8d3c7;
+  border-radius: .75rem;
+  padding: 1.25rem;
+}
+
+header {
+  margin-bottom: 1rem;
+}
+
+h1,
+.eyebrow {
+  margin: 0;
+}
+
+.eyebrow {
+  color: #8a4b24;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+fieldset {
+  display: grid;
+  gap: .5rem;
+  margin: 0 0 1rem;
+}
+
+legend {
+  padding: 0 .35rem;
+  font-weight: 700;
+}
+
+label {
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+  border: 0;
+  border-radius: .5rem;
+  padding: .85rem 1rem;
+  color: white;
+  background: #3157a4;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.result {
+  min-height: 1.6rem;
+  margin-top: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  background: white;
+}
+
+th,
+td {
+  padding: .75rem;
+  border: 1px solid #d8d3c7;
+  text-align: left;
+}

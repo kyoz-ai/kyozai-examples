@@ -1,0 +1,23 @@
+{
+  "$schema": "https://kyoz.ai/schemas/application-v1.json",
+  "schemaVersion": 1,
+  "artifacts": {
+    "assets": "dist/assets"
+  },
+  "capabilities": ["personal-objects", "application-database"],
+  "database": {
+    "migrations": ["migrations/001-notebook-progress.sql"],
+    "tables": {
+      "notebook_progress": {
+        "scope": "membership",
+        "key": ["path"]
+      }
+    }
+  },
+  "egress": {
+    "browser": [
+      "https://cdn.jsdelivr.net",
+      "https://files.pythonhosted.org"
+    ]
+  }
+}

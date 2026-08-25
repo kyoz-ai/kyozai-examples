@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>受講者の結果 | Simple Quiz</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <main class="dashboard">
+      <header>
+        <p class="eyebrow">Simple Quiz</p>
+        <h1>受講者の結果</h1>
+      </header>
+      <p id="status">読み込み中...</p>
+      <table hidden>
+        <thead>
+          <tr>
+            <th>受講者</th>
+            <th>得点</th>
+            <th>2 + 3</th>
+            <th>6 × 4</th>
+            <th>15 ÷ 3</th>
+            <th>提出日時</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+    <script type="module" src="/dashboard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>受講者の進捗 | kyoz.ai JupyterLite</title>
+    <link rel="stylesheet" href="/dashboard.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <p class="eyebrow">kyoz.ai JupyterLite</p>
+        <h1>受講者の進捗</h1>
+      </div>
+      <a href="/lab/index.html">JupyterLiteを開く</a>
+    </header>
+    <main>
+      <p id="status">読み込み中...</p>
+      <table hidden>
+        <thead>
+          <tr>
+            <th>受講者</th>
+            <th>Notebook</th>
+            <th>実行済みコードセル</th>
+            <th>最終保存</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+    <script type="module" src="/dashboard.js"></script>
+  </body>
+</html>
