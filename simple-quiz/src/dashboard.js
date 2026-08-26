@@ -18,13 +18,15 @@ const body = document.querySelector('tbody');
 for (const learner of learners) {
   const result = resultsByMembership.get(learner.membershipId);
   body.append(result === undefined
-    ? row(learner.displayName, '未提出', '—', '—', '—', '—')
+    ? row(learner.displayName, '未提出', '—', '—', '—', '—', '—', '—')
     : row(
       learner.displayName,
       `${result.score} / ${result.question_count}`,
       result.addition_answer ?? '—',
       result.multiplication_answer ?? '—',
       result.division_answer ?? '—',
+      result.subtraction_answer ?? '—',
+      result.halving_answer ?? '—',
       new Date(result.submitted_at).toLocaleString('ja-JP'),
     ));
 }

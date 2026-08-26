@@ -15,6 +15,8 @@ export async function saveResult(result) {
         addition_answer: result.answers.addition,
         multiplication_answer: result.answers.multiplication,
         division_answer: result.answers.division,
+        subtraction_answer: result.answers.subtraction,
+        halving_answer: result.answers.halving,
       },
     }),
   });
@@ -29,7 +31,8 @@ export async function loadResults() {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       sql: `SELECT membership_id, score, question_count, submitted_at,
-                   addition_answer, multiplication_answer, division_answer
+                   addition_answer, multiplication_answer, division_answer,
+                   subtraction_answer, halving_answer
             FROM quiz_results
             WHERE quiz_id = ?`,
       params: [quizId],

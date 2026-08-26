@@ -13,12 +13,14 @@ test('saves a quiz result in the current Learner membership scope', async () => 
   try {
     await saveResult({
       score: 2,
-      questionCount: 3,
+      questionCount: 5,
       submittedAt: '2026-08-26T01:02:03Z',
       answers: {
         addition: '5',
         multiplication: '20',
         division: '5',
+        subtraction: '13',
+        halving: '8',
       },
     });
   } finally {
@@ -34,11 +36,13 @@ test('saves a quiz result in the current Learner membership scope', async () => 
     key: { quiz_id: 'arithmetic' },
     values: {
       score: 2,
-      question_count: 3,
+      question_count: 5,
       submitted_at: '2026-08-26T01:02:03Z',
       addition_answer: '5',
       multiplication_answer: '20',
       division_answer: '5',
+      subtraction_answer: '13',
+      halving_answer: '8',
     },
   });
 });
@@ -63,6 +67,7 @@ test('loads all Learner results with one staff SQL request', async () => {
   assert.equal(request.method, 'POST');
   const body = await request.json();
   assert.match(body.sql, /FROM quiz_results/);
+  assert.match(body.sql, /subtraction_answer, halving_answer/);
   assert.deepEqual(body.params, ['arithmetic']);
   assert.deepEqual(results, [{ membership_id: 'learner-1', score: 2 }]);
 });

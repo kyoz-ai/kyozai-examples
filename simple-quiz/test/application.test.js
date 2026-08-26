@@ -17,6 +17,7 @@ test('publishes the static application from dist', async () => {
     migrations: [
       'migrations/001-quiz-results.sql',
       'migrations/002-quiz-answers.sql',
+      'migrations/003-five-question-answers.sql',
     ],
     tables: {
       quiz_results: { scope: 'membership', key: ['quiz_id'] },
