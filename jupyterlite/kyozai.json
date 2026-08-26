@@ -4,6 +4,10 @@
   "artifacts": {
     "assets": "dist/assets"
   },
+  "paths": {
+    "learner": "/lab/index.html",
+    "instructor": "/dashboard.html"
+  },
   "capabilities": ["personal-objects", "application-database"],
   "database": {
     "migrations": ["migrations/001-notebook-progress.sql"],

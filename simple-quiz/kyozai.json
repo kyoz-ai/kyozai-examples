@@ -4,6 +4,10 @@
   "artifacts": {
     "assets": "dist"
   },
+  "paths": {
+    "learner": "/quiz.html",
+    "instructor": "/dashboard.html"
+  },
   "capabilities": ["application-database"],
   "database": {
     "migrations": [
