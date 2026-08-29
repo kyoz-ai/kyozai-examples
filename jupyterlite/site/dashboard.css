@@ -56,3 +56,8 @@ th {
   color: #52617a;
   font-size: 0.85rem;
 }
+
+td.current {
+  background: #eef3ff;
+  font-weight: 600;
+}

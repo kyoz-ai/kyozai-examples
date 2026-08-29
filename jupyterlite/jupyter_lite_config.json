@@ -1,9 +1,0 @@
-{
-  "LiteBuildConfig": {
-    "contents": ["files"],
-    "output_dir": "dist/assets"
-  },
-  "FederatedExtensionAddon": {
-    "extra_labextensions_path": ["extensions"]
-  }
-}
