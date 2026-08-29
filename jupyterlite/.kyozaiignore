@@ -1,8 +1,0 @@
-.jupyterlite.doit.db
-.cache/
-.venv/
-dist/
-extensions/
-lib/
-node_modules/
-tsconfig.tsbuildinfo

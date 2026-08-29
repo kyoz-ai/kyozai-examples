@@ -1,6 +1,12 @@
 {
   "$schema": "https://kyoz.ai/schemas/application-v1.json",
   "schemaVersion": 1,
+  "build": {
+    "kind": "jupyterlite",
+    "contents": "files",
+    "static": "site",
+    "hooks": "hooks.js"
+  },
   "artifacts": {
     "assets": "dist/assets"
   },
@@ -19,9 +25,6 @@
     }
   },
   "egress": {
-    "browser": [
-      "https://cdn.jsdelivr.net",
-      "https://files.pythonhosted.org"
-    ]
+    "browser": ["https://cdn.jsdelivr.net"]
   }
 }
