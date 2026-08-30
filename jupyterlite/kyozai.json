@@ -16,11 +16,18 @@
   },
   "capabilities": ["personal-objects", "application-database"],
   "database": {
-    "migrations": ["migrations/001-notebook-progress.sql"],
+    "migrations": [
+      "migrations/001-notebook-progress.sql",
+      "migrations/002-cell-executions.sql"
+    ],
     "tables": {
       "notebook_progress": {
         "scope": "membership",
         "key": ["path"]
+      },
+      "cell_executions": {
+        "scope": "membership",
+        "key": ["path", "cell_id", "executed_at"]
       }
     }
   },
