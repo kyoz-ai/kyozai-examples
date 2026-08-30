@@ -61,3 +61,56 @@ td.current {
   background: #eef3ff;
   font-weight: 600;
 }
+
+button.learner {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #3157d5;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.learner::before {
+  content: '▸ ';
+}
+
+button.learner[aria-expanded='true']::before {
+  content: '▾ ';
+}
+
+tr.executions > td {
+  padding: 0.75rem 1rem 1.25rem 2rem;
+  background: #f8fafd;
+}
+
+tr.executions table {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+tr.executions th,
+tr.executions td {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+tr.failure td:last-child {
+  color: #b42318;
+  font-weight: 600;
+}
+
+tr.success td:last-child {
+  color: #067647;
+}
+
+tr.executions pre {
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  color: #b42318;
+  background: #fff5f5;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+}

@@ -1,11 +1,12 @@
-const TABLE_URL = '/_kyozai/capabilities/database/membership/notebook_progress';
+const PROGRESS_URL = '/_kyozai/capabilities/database/membership/notebook_progress';
+const EXECUTIONS_URL = '/_kyozai/capabilities/database/membership/cell_executions';
 
 export async function saved(model) {
   if (model.type !== 'notebook') {
     return;
   }
   const codeCells = model.content.cells.filter((cell) => cell.cell_type === 'code');
-  await mutate('PUT', {
+  await mutate(PROGRESS_URL, 'PUT', {
     key: { path: model.path },
     values: {
       last_modified: model.last_modified,
@@ -19,16 +20,29 @@ export async function removed(model) {
   if (model.type !== 'notebook') {
     return;
   }
-  await mutate('DELETE', { key: { path: model.path } });
+  await mutate(PROGRESS_URL, 'DELETE', { key: { path: model.path } });
 }
 
-async function mutate(method, body) {
-  const response = await fetch(TABLE_URL, {
+export async function executed(model, execution) {
+  const { cell, success } = execution;
+  const error = cell.outputs.find((output) => output.output_type === 'error');
+  await mutate(EXECUTIONS_URL, 'PUT', {
+    key: { path: model.path, cell_id: cell.id, executed_at: new Date().toISOString() },
+    values: {
+      execution_count: cell.execution_count,
+      success,
+      error: error === undefined ? null : `${error.ename}: ${error.evalue}\n${error.traceback.join('\n')}`,
+    },
+  });
+}
+
+async function mutate(url, method, body) {
+  const response = await fetch(url, {
     method,
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(body),
   });
   if (!response.ok) {
-    throw new Error(`${TABLE_URL}: ${response.status}`);
+    throw new Error(`${url}: ${response.status}`);
   }
 }
