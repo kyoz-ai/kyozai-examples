@@ -26,7 +26,7 @@ jobs:
             const ref = context.payload.pull_request.head.ref;
             const buttons = applications.map((application) => {
               const url = `https://my.kyoz.ai/deploy?repo=${repository}&ref=${encodeURIComponent(ref)}&path=${encodeURIComponent(application)}`;
-              return `- [${application}](${application}/) [![Deploy on kyoz.ai](https://img.shields.io/badge/Deploy_on-kyoz.ai-172554)](${url})`;
+              return `- [${application}](${application}/) [![Deploy on kyoz.ai](https://img.shields.io/badge/Deploy%20on-kyoz.ai-172554)](${url})`;
             });
             const body = `${marker}\nこのbranch(\`${ref}\`)のApplicationをkyoz.aiで試す:\n\n${buttons.join('\n')}`;
             const { data: comments } = await github.rest.issues.listComments({
