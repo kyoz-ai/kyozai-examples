@@ -14,11 +14,12 @@
     "learner": "/lab/index.html",
     "instructor": "/dashboard.html"
   },
-  "capabilities": ["personal-objects", "application-database"],
+  "capabilities": ["personal-objects", "application-database", "decision"],
   "database": {
     "migrations": [
       "migrations/001-notebook-progress.sql",
-      "migrations/002-cell-executions.sql"
+      "migrations/002-cell-executions.sql",
+      "migrations/003-advice.sql"
     ],
     "tables": {
       "notebook_progress": {
