@@ -1,3 +1,5 @@
+import { shownAdvice } from './advice.js';
+
 const [learners, progress, contents] = await Promise.all([
   requestJSON('/_kyozai/capabilities/course/learners'),
   requestJSON('/_kyozai/capabilities/database/sql', {
@@ -85,7 +87,7 @@ async function toggleExecutions(button, learner) {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
-        sql: `SELECT path, executed_at, execution_count, success, error
+        sql: `SELECT path, executed_at, execution_count, success, error, advice_id, advice_probability
               FROM cell_executions WHERE membership_id = ? ORDER BY executed_at DESC`,
         params: [learner.membershipId],
       }),
@@ -112,7 +114,7 @@ function executionLog(executions) {
   const table = document.createElement('table');
   const head = document.createElement('thead');
   const headings = document.createElement('tr');
-  for (const heading of ['実行日時', 'Notebook', 'Cell', '結果']) {
+  for (const heading of ['実行日時', 'Notebook', 'Cell', '結果', 'アドバイス']) {
     const cell = document.createElement('th');
     cell.textContent = heading;
     headings.append(cell);
@@ -125,13 +127,14 @@ function executionLog(executions) {
       execution.path,
       `In [${execution.execution_count ?? ' '}]`,
       execution.success ? '成功' : '失敗',
+      adviceSummary(execution),
     );
     element.className = execution.success ? 'success' : 'failure';
     body.append(element);
     if (execution.error !== null) {
       const errorRow = document.createElement('tr');
       const errorCell = document.createElement('td');
-      errorCell.colSpan = 4;
+      errorCell.colSpan = 5;
       const traceback = document.createElement('pre');
       traceback.textContent = execution.error.replace(/\x1b\[[0-9;]*m/g, '');
       errorCell.append(traceback);
@@ -141,6 +144,15 @@ function executionLog(executions) {
   }
   table.append(head, body);
   return table;
+}
+
+function adviceSummary(execution) {
+  if (execution.advice_id === null) {
+    return '';
+  }
+  const percent = `${Math.round(execution.advice_probability * 100)}%`;
+  const text = shownAdvice(execution.advice_id, execution.advice_probability);
+  return text === null ? `表示なし (${execution.advice_id} ${percent})` : `${text} (${percent})`;
 }
 
 async function requestJSON(url, init) {

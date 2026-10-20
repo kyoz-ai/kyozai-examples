@@ -6,6 +6,10 @@
 
 `files/`にNotebookやdata fileをsub directoryごと置くと、初期contentsとして受講者へ配布され、Notebookは教員ダッシュボードの列にも自動で並びます。既にJupyterLiteを開いたことのある受講者には、新しい初期contentsは配布されません。
 
+## エラー時のアドバイスを変えるには
+
+cellの実行がエラーになると、`hooks.js`が`site/advice.js`の候補を[Decision](https://docs.kyoz.ai/reference/platform-api#decision)へ渡し、判断モデルが選んだ候補の`text`をcellの下に表示します。モデルは文章を生成しないため、受講者が見る文は教員が`site/advice.js`に書いたものだけです。`criteria`はモデルが選ぶときの説明、`text`は受講者へ見せる文で、`text`が`null`の候補は表示しないことを表します。選ばれた候補の確率が`ADVICE_THRESHOLD`未満の場合も表示しません。選ばれた候補と確率は`cell_executions` tableに記録され、教員ダッシュボードの実行記録に並びます。
+
 ## 教員ダッシュボードをカスタマイズするには
 
 教員画面は`site/`の`dashboard.html`、`dashboard.js`、`dashboard.css`で、`dashboard.js`が[Platform API](https://docs.kyoz.ai/reference/platform-api)の`/_kyozai/capabilities/course/learners`と`/_kyozai/capabilities/database/sql`を`fetch`し、`hooks.js`が保存時に`notebook_progress` tableへ記録した値を表示しています。表示する項目を変えるには`hooks.js`と`migrations/`のtable定義も合わせて変更し、HTMLにはinline scriptを書かず別fileにします。
